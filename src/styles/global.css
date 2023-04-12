@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 
 a {
@@ -19,3 +21,25 @@ a:hover {
 .content ul {
   @apply my-6;
 }
+
+.btn{
+  @apply text-base font-medium h-[48px] bg-primary-main1 text-primary-main2 px-6;
+}
+.btn:hover{
+  @apply bg-primary-main3;
+}
+.btn:focus{
+  @apply  border-[3px] border-primary-main3;
+}
+
+
+.btn-secondary{
+  @apply text-base font-medium h-[48px] bg-neutral-white text-primary-main1 px-6 border border-neutral-black;
+}
+.btn-secondary:hover{
+  @apply text-primary-main4;
+}
+.btn-secondary:focus{
+  @apply bg-primary-main1 border-primary-main3;
+}
+

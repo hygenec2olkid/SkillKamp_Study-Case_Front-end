@@ -1,184 +1,110 @@
-import { useRouter } from 'next/router';
-
-import { Meta } from '@/layouts/Meta';
-import { Main } from '@/templates/Main';
+import { useRouter } from "next/router";
+import Carousel from "../components/Carousel";
+import { Meta } from "@/layouts/Meta";
+import { Main } from "@/templates/Main";
+import ProductsAPI from "@/api/products";
+import { useEffect, useState } from "react";
+import { APIResponse } from "@/api/request";
+import Link from "next/link";
 
 const Index = () => {
   const router = useRouter();
+  const images = [
+    `${router.basePath}/assets/images/Banner1.png`,
+    `${router.basePath}/assets/images/Banner2.png`,
+    `${router.basePath}/assets/images/Banner3.png`,
+  ];
+
+  const [data, setData] = useState<APIResponse | undefined | never[]>(
+    undefined
+  );
+  useEffect(() => {
+    ProductsAPI.getNewArrivalsAPI().then((res) => setData(res));
+  }, []);
 
   return (
-    <Main
-      meta={
-        <Meta
-          title="Next.js Boilerplate Presentation"
-          description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
-        />
-      }
-    >
-      <a href="https://github.com/ixartz/Next-js-Boilerplate">
-        <img
-          src={`${router.basePath}/assets/images/nextjs-starter-banner.png`}
-          alt="Nextjs starter banner"
-        />
-      </a>
-      <h2 className="text-2xl font-bold">
-        Boilerplate code for your Nextjs project with Tailwind CSS
-      </h2>
-      <p>
-        <span role="img" aria-label="rocket">
-          🚀
-        </span>{' '}
-        Next.js Boilerplate is a starter code for your Next js project by
-        putting developer experience first .{' '}
-        <span role="img" aria-label="zap">
-          ⚡️
-        </span>{' '}
-        Made with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged,
-        VSCode, Netlify, PostCSS, Tailwind CSS.
-      </p>
-      <h3 className="text-lg font-semibold">Next js Boilerplate Features</h3>
-      <p>Developer experience first:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="fire">
-            🔥
-          </span>{' '}
-          <a href="https://nextjs.org" rel="nofollow">
-            Next.js
-          </a>{' '}
-          for Static Site Generator
-        </li>
-        <li>
-          <span role="img" aria-label="art">
-            🎨
-          </span>{' '}
-          Integrate with{' '}
-          <a href="https://tailwindcss.com" rel="nofollow">
-            Tailwind CSS
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="nail_care">
-            💅
-          </span>{' '}
-          PostCSS for processing Tailwind CSS
-        </li>
-        <li>
-          <span role="img" aria-label="tada">
-            🎉
-          </span>{' '}
-          Type checking Typescript
-        </li>
-        <li>
-          <span role="img" aria-label="pencil2">
-            ✏️
-          </span>{' '}
-          Linter with{' '}
-          <a href="https://eslint.org" rel="nofollow">
-            ESLint
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="hammer_and_wrench">
-            🛠
-          </span>{' '}
-          Code Formatter with{' '}
-          <a href="https://prettier.io" rel="nofollow">
-            Prettier
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="fox_face">
-            🦊
-          </span>{' '}
-          Husky for Git Hooks
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🚫
-          </span>{' '}
-          Lint-staged for running linters on Git staged files
-        </li>
-        <li>
-          <span role="img" aria-label="no_entry_sign">
-            🗂
-          </span>{' '}
-          VSCode configuration: Debug, Settings, Tasks and extension for
-          PostCSS, ESLint, Prettier, TypeScript
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            🤖
-          </span>{' '}
-          SEO metadata, JSON-LD and Open Graph tags with Next SEO
-        </li>
-        <li>
-          <span role="img" aria-label="robot">
-            ⚙️
-          </span>{' '}
-          <a
-            href="https://www.npmjs.com/package/@next/bundle-analyzer"
-            rel="nofollow"
-          >
-            Bundler Analyzer
-          </a>
-        </li>
-        <li>
-          <span role="img" aria-label="rainbow">
-            🌈
-          </span>{' '}
-          Include a FREE minimalist theme
-        </li>
-        <li>
-          <span role="img" aria-label="hundred">
-            💯
-          </span>{' '}
-          Maximize lighthouse score
-        </li>
-      </ul>
-      <p>Built-in feature from Next.js:</p>
-      <ul>
-        <li>
-          <span role="img" aria-label="coffee">
-            ☕
-          </span>{' '}
-          Minify HTML &amp; CSS
-        </li>
-        <li>
-          <span role="img" aria-label="dash">
-            💨
-          </span>{' '}
-          Live reload
-        </li>
-        <li>
-          <span role="img" aria-label="white_check_mark">
-            ✅
-          </span>{' '}
-          Cache busting
-        </li>
-      </ul>
-      <h3 className="text-lg font-semibold">Our Stater code Philosophy</h3>
-      <ul>
-        <li>Minimal code</li>
-        <li>SEO-friendly</li>
-        <li>
-          <span role="img" aria-label="rocket">
-            🚀
-          </span>{' '}
-          Production-ready
-        </li>
-      </ul>
-      <p>
-        Check our GitHub project for more information about{' '}
-        <a href="https://github.com/ixartz/Next-js-Boilerplate">
-          Nextjs Boilerplate
-        </a>
-        . You can also browse our{' '}
-        <a href="https://creativedesignsguru.com/category/nextjs/">
-          Premium NextJS Templates
-        </a>{' '}
-        on our website to support this project.
-      </p>
+    <Main meta={<Meta title="Happy kid" description="Happy kid description" />}>
+      <Carousel images={images} autoSlide={true} />
+
+      <div className="New Arrivals mt-[80px]">
+        <header className="text-2xl font-light flex justify-center h-16">
+          New Arrivals
+        </header>
+        <div className="flex w-full justify-around">
+          {data &&
+            data.detail.data.catalog.category.productsWithMetaData.list
+              .slice(0, 4)
+              .map((product) => (
+                <div className="relative" key={product.id}>
+                  {
+                    <Link href={`/product-page/${product.sku}`}>
+                      <img
+                        src={product.media[0].url}
+                        width={321}
+                        height={321}
+                        className="cursor-pointer"
+                      />
+                    </Link>
+                  }
+
+                  {product.price > product.discountedPrice ? (
+                    <div>
+                      <div className="absolute top-0 bg-primary-main3 text-primary-main2 w-16 text-center font-light">
+                        SALE
+                      </div>
+                      <div className="text-center font-light text-sm cursor-pointer">
+                        {product.name}
+                        <div className="h-3"></div>
+                        <div className="h-3 border-t-[1px] w-5 border-primary-main1  mx-auto"></div>
+                        <div className="relative">
+                          <div className="h-[1px] w-10 bg-primary-main1 absolute inset-0 top-[50%] left-[36%]"></div>
+                          {product.price}₺ {product.discountedPrice}₺
+                        </div>
+                        <div className="h-3"></div>
+                      </div>
+                      <Link
+                        href={`/product-page/${product.sku}`}
+                        className="text-primary-main1 hover:border-0"
+                      >
+                        <button className=" text-center font-light text-sm border-[1px] w-full border-primary-main1 py-2 hover:text-primary-main4">
+                          Add to Cart
+                        </button>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div>
+                      {product.ribbon && (
+                        <div className="absolute top-0 bg-primary-main3 text-primary-main2 w-[110px] h-7 text-center font-light">
+                          {product.ribbon}
+                        </div>
+                      )}
+                      <div className="text-center font-light text-sm cursor-pointer">
+                        {product.name}
+                        <div className="h-3"></div>
+                        <div className="h-3 border-t-[1px] w-5 border-primary-main1 mx-auto"></div>
+                        {product.price}₺<div className="h-3"></div>
+                        <Link
+                          href={`/product-page/${product.sku}`}
+                          className="text-primary-main1 hover:border-0"
+                        >
+                          <button className="border-[1px] w-full border-primary-main1 py-2 hover:text-primary-main4">
+                            Add to Cart
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+        </div>
+
+        <Link
+          className="border-none mt-[80px] mb-4 mx-auto bg-primary-main1 text-primary-main2 w-[150px] h-10 font-light flex justify-center items-center text-sm hover:bg-primary-main3"
+          href="/shop-collection/"
+        >
+          Shop All
+        </Link>
+      </div>
     </Main>
   );
 };
