@@ -32,7 +32,7 @@ const Index = () => {
         </header>
         <div className="flex w-full justify-around">
           {data &&
-            data.detail.data.catalog.category.productsWithMetaData.list
+            data.detail?.data.catalog.category.productsWithMetaData.list
               .slice(0, 4)
               .map((product) => (
                 <div className="relative" key={product.id}>

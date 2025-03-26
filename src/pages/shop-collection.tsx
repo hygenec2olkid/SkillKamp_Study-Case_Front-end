@@ -58,7 +58,7 @@ const Shop = () => {
                 <div></div>
               </div>
               <div className="grid grid-cols-3 grow justify-items-center gap-5 mb-8">
-                {data.detail.data.catalog.category.productsWithMetaData.list.map(
+                {data.detail?.data.catalog.category.productsWithMetaData.list.map(
                   (product) => (
                     <div key={product.id}>
                       {product.media.length > 0 && (
